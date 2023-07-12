@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings', [
+        'heading' => 'latest listings',
+        'listings' => [
+            [
+                "id" => 1,
+                "title" => 'listing one',
+                'descriptions' => "loreum description ....",
+                'position' => "back end"
+            ],
+            [
+                "id" => 2,
+                "title" => 'listing two',
+                'descriptions' => "loreum description ....",
+                'position' => "front end"
+            ],
+            [
+                "id" => 3,
+                "title" => 'listing three',
+                'descriptions' => "loreum description ....",
+                'position' => "senior front end"
+            ],
+        ]
+    ]);
 });
