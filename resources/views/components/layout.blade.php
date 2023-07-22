@@ -24,16 +24,36 @@
 </head>
 
 <body class="mb-48">
-    <nav class="flex justify-between items-center mb-4">
-        <a href="/"><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo" /></a>
+    <nav class="flex justify-between items-center my-4">
+        <a href="/" class="ml-4 decoration-none">
+            <h1 class="bg-red-500 px-3 py-2 text-lg font-bold uppercase text-white rounded-lg">
+                J<span class="text-black">H</span>
+            </h1>
+        </a>
         <ul class="flex space-x-6 mr-6 text-lg">
+            @auth
             <li>
-                <a href="register.html" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
+                <span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
             </li>
             <li>
-                <a href="login.html" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i>
+                    Manage Listings</a>
+            </li>
+            <li>
+                <form class="inline" method="POST" action="/logout">
+                    @csrf
+                    <button type="submit"><i class="fa-solid fa-door-closed"></i> Logout</button>
+                </form>
+            </li>
+            @else
+            <li>
+                <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
+            </li>
+            <li>
+                <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-right-to-bracket"></i>
                     Login</a>
             </li>
+            @endauth
         </ul>
     </nav>
     <!-- View output -->
